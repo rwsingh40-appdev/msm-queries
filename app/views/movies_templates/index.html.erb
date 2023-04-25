@@ -1,1 +1,29 @@
-<h1> my movies landing page</h1>
+<h1>List of all movies</h1>
+
+<hr>
+
+<table border="1">
+  <th>ID</th>
+  <th>Image</th>
+  <th>Title</th>
+  <th>Year</th>
+  <th>Director</th>
+  <th></th>
+  <%@movie_array.each do |movie| %>
+  <%director = Director.where({:id => movie.director_id}).first%>
+    <tr>
+      <td><%=movie.id%></td>
+      <td>
+        <img src="http://robohash.org/<%=movie.id%>" alt="">
+      </td>
+      <td><%=movie.title%></td>
+      <td><%=movie.year%></td>
+      <td><%=director.name%></td>
+      <td>
+       <a href="/movies/<%=movie.id%>">Show details</a>
+      </td>
+    </tr>
+    
+  <% end %>
+
+</table>
